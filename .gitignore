@@ -1,8 +1,14 @@
-/build/intermediates/lint-cache/
-/.idea/
-/.gradle/
-# Ignore plugin files
+# Ignore build files
+/.gradle
+/build
+
+# Ignore IntelliJ IDEA files
+/.idea
 *.iml
-*.yaml
-*.html
+
+# Ignore local files
 local.properties
+
+# Ignore plugin files
+#*.yaml
+#*.html
