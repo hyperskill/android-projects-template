@@ -7,7 +7,7 @@ The wizard will guide you to initialize a your custom project.
 
 ### Cloning repository
 
-Cloning via SSH: git@git.jetbrains.space/hyperskill/ad/template-android-project.git
+Cloning via SSH: ssh://git@git.jetbrains.space/hyperskill/ad/template-android-project.git
 
 This requires a ssh credentials. It can be defined in the MyProfile -> Security -> Git Keys
 
@@ -24,7 +24,7 @@ Also change the `title` value and `content` value
 #### `lesson-info.yaml` in your project
 Change the `content` value. This value is a set of stages that you project contains. 
 You can set as much stages as you want. For this template there will be only 1 stage.
-For creating a new stage you can define it in this file and copy-paste the previous.
+ 
  
 ### Defining stage
 
@@ -36,4 +36,4 @@ Each stage should contain:
 - `src` is a folder with sources.
 
 *Note*: Don't forget to refactor packages and `AndroidManifest.xml` as well. 
-You can find all `hyperskill.android.template.project` occurrences by Find action in Intellij IDEA or Android Studio
+You can find all `hyperskill.android.template.project` occurrences by Find action in Intellij IDEA or Android Studio.
