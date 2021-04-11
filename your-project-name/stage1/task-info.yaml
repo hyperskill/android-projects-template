@@ -1,0 +1,28 @@
+type: edu
+files:
+- name: build.gradle
+  visible: false
+- name: src/main/AndroidManifest.xml
+  visible: true
+- name: src/main/res/layout/activity_main.xml
+  visible: true
+- name: src/main/res/values/colors.xml
+  visible: true
+- name: src/main/res/values/styles.xml
+  visible: true
+- name: src/main/res/values/strings.xml
+  visible: true
+- name: src/main/res/drawable/ic_launcher_background.xml
+  visible: true
+- name: src/main/res/drawable-v24/ic_launcher_foreground.xml
+  visible: true
+- name: src/main/res/mipmap-anydpi-v26/ic_launcher.xml
+  visible: true
+- name: src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml
+  visible: true
+- name: src/test/java/resources/robolectric.properties
+  visible: false
+- name: src/test/java/org/hyperskill/android/template/project/Stage1UnitTest.kt
+  visible: false
+- name: src/main/java/org/hyperskill/android/template/project/MainActivity.kt
+  visible: true
