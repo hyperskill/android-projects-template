@@ -8,9 +8,6 @@ android {
     defaultConfig {
         applicationId "org.hyperskill.android.template.project"
         minSdkVersion 21
-        // DO NOT CHANGE THIS VALUE
-        // Because this version related with robolectic version too
-        // [Robolectric] WARN: Android SDK 29 requires Java 9. Tests won't be run on SDK 29 unless explicitly requested.
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -54,6 +51,6 @@ dependencies {
 
     // Robolectric
     // http://robolectric.org
-    def robolectric = "4.6.1"
+    def robolectric = "4.5"
     testImplementation "org.robolectric:robolectric:$robolectric"
 }
