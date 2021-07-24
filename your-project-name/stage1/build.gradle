@@ -3,7 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 30
 
     defaultConfig {
         applicationId "org.hyperskill.android.template.project"
@@ -11,7 +11,7 @@ android {
         // DO NOT CHANGE THIS VALUE
         // Because this version related with robolectic version too
         // [Robolectric] WARN: Android SDK 29 requires Java 9. Tests won't be run on SDK 29 unless explicitly requested.
-        targetSdkVersion 28
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "com.edu.AndroidEduTestRunner"
