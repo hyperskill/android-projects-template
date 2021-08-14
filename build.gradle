@@ -1,19 +1,19 @@
+apply from: 'build-src/dependencies.gradle'
+
 buildscript {
-    ext.kotlin_version = '1.4.32'
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:4.0.2'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${rootProject.ext.properties.get("version.common.kotlin")}"
     }
 }
 
 allprojects {
     repositories {
         google()
-        jcenter()
         mavenCentral()
     }
 
