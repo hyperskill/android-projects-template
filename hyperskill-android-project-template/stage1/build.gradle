@@ -5,12 +5,12 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion rootProject.ext.properties["config.android.sdk.compile"] as int
 
     defaultConfig {
         applicationId "org.hyperskill.android.project.template"
-        minSdkVersion 21
-        targetSdkVersion 30
+        minSdkVersion rootProject.ext.properties["config.android.sdk.minimum"] as int
+        targetSdkVersion rootProject.ext.properties["config.android.sdk.target"] as int
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "com.edu.AndroidEduTestRunner"
@@ -32,26 +32,13 @@ android {
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.32"
-    implementation 'androidx.core:core-ktx:1.3.2'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    // Feel free to add your project specified dependencies here.
+    // You can check already defined dependencies in build-src/dependencies.gradle file.
 
-    testImplementation 'junit:junit:4.12'
-
-    def material = "1.3.0-beta01"
-    implementation "com.google.android.material:material:$material"
-
-    def espressoCore = "3.3.0"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoCore"
-
-    def testRules = "1.3.0"
-    androidTestImplementation "androidx.test:rules:$testRules"
-
-    def extJUnit = "1.1.2"
-    androidTestImplementation "androidx.test.ext:junit:$extJUnit"
-
-    // Robolectric
-    // http://robolectric.org
-    def robolectric = "4.5"
-    testImplementation "org.robolectric:robolectric:$robolectric"}
+    rootProject.ext.commonDependencies.each { dependency ->
+        add("implementation", dependency.value)
+    }
+    rootProject.ext.testDependencies.each { dependency ->
+        add("testImplementation", dependency.value)
+    }
+}
