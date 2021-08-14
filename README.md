@@ -1,7 +1,7 @@
 # project-android-template
 
 This project is a template for any hyperskill android project you want to create. 
-The wizard will guide you to initialize a your custom project.
+The wizard will guide you to initialize a project.
 
 ## Getting Started
 
@@ -13,18 +13,10 @@ This requires a ssh credentials. It can be defined in the MyProfile -> Security 
 
 Cloning via HTTP: https://git.jetbrains.space/hyperskill/ad/template-android-project.git
 
-### Defining project
+### First steps
 
-#### `settings.gradle`
-Change the `rootProject.name = 'your-project-name'` 
-
-#### `course-info.yaml`
-Also change the `title` value and `content` value 
-
-#### `lesson-info.yaml` in your project
-Change the `content` value. This value is a set of stages that you project contains. 
-You can set as much stages as you want. For this template there will be only 1 stage.
- 
+Please, follow up to our project wizard guide for proper project configuring:
+ - [Defining project](documents/DefiningProject.md)
  
 ### Defining stage
 
