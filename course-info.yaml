@@ -1,8 +1,8 @@
 type: hyperskill
-title: hyperskill-tip-calculator
+title: hyperskill-android-project-template
 language: English
 summary: Hyperskill lesson 436808
 programming_language: Kotlin
 environment: Android
 content:
-- your-project-name
+- hyperskill-android-project-template
