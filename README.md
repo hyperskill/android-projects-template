@@ -7,11 +7,11 @@ The wizard will guide you to initialize a project.
 
 ### Cloning repository
 
-Cloning via SSH: ssh://git@git.jetbrains.space/hyperskill/ad/template-android-project.git
+Cloning via SSH: git@github.com:hyperskill/android-projects-template.git
 
 This requires a ssh credentials. It can be defined in the MyProfile -> Security -> Git Keys
 
-Cloning via HTTP: https://git.jetbrains.space/hyperskill/ad/template-android-project.git
+Cloning via HTTP: https://github.com/hyperskill/android-projects-template
 
 ### Setup wizard
 
