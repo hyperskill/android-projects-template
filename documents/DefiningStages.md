@@ -9,7 +9,8 @@ and already have a solution from the previous stage that only requires an upgrad
 
 #### task.html
 This file is pretty simple: it contains the current stage and task description that the user 
-should solve to complete this stage.
+should solve to complete this stage. If you want to add an images to task description, upload it,
+using any image hosting service. As example, Stepik uses https://uploadcare.com
 
 #### task-info.yaml
 This file contains a files that will be visible in project (Alt + 1) panel for a course view.
