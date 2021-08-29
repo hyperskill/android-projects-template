@@ -19,3 +19,4 @@ Please, follow up to our project wizard guide for proper project configuring:
  - [Defining project](documents/DefiningProject.md)
  - [Defining stages](documents/DefiningStages.md)
  - [How to Git this template](documents/HowToGit.md)
+ 
