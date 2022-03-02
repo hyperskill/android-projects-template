@@ -9,6 +9,9 @@
 # Ignore local files
 local.properties
 
+# Uncash gradle wrapper
+/gradle/wrapper
+
 # Ignore plugin files
 #*.yaml
 #*.html
