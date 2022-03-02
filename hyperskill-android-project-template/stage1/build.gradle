@@ -1,37 +1,36 @@
-//file:noinspection GroovyAssignabilityCheck
-
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion rootProject.ext.properties["config.android.sdk.compile"] as int
+    compileSdkVersion hs.android.compileSdkVersion
 
     defaultConfig {
-        applicationId "org.hyperskill.android.project.template"
-        minSdkVersion rootProject.ext.properties["config.android.sdk.minimum"] as int
-        targetSdkVersion rootProject.ext.properties["config.android.sdk.target"] as int
+
+        applicationId "org.hyperskill.android.project.template"  //TODO change template on this line to yourprojectname, after that also change AndroidManifest.xml
+        minSdkVersion hs.android.minSdkVersion
+        targetSdkVersion hs.android.targetSdkVersion
         versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "com.edu.AndroidEduTestRunner"
+        versionName '1.0'
     }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
+
+    buildFeatures {
+        viewBinding true
     }
 }
 
 dependencies {
-    // Feel free to add your project specified dependencies here.
-    // You can check already defined dependencies in build-src/dependencies.gradle file.
+    def kotlinVersion = hs.android.kotlinVersion
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
 
-    rootProject.ext.commonDependencies.each { dependency ->
-        add("implementation", dependency.value)
-    }
-    rootProject.ext.testDependencies.each { dependency ->
-        add("testImplementation", dependency.value)
-    }
+    def coreKtx = hs.android.lib.coreKtx
+    implementation "androidx.core:core-ktx:$coreKtx"
+
+    def appCompat = hs.android.lib.appCompat
+    implementation "androidx.appcompat:appcompat:$appCompat"
+
+    def constraintLayout = hs.android.lib.constraintLayout
+    implementation "androidx.constraintlayout:constraintlayout:$constraintLayout"
+
+    def material = hs.android.lib.material
+    implementation "com.google.android.material:material:$material"
 }

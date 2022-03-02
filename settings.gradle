@@ -1,18 +1,32 @@
+buildscript {
+    repositories {
+        maven { url 'https://jitpack.io' }
+    }
+
+    dependencies {
+        classpath 'com.github.hyperskill:hs-gradle-plugin:android-update-SNAPSHOT'
+    }
+
+    configurations.all {
+        resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+    }
+}
+
 static String sanitizeName(String name) {
     return name.replaceAll("[ /\\\\:<>\"?*|()]", "_").replaceAll("(^[.]+)|([.]+\$)", "")
 }
 
-rootProject.name = 'hyperskill-android-project-template'
-
 rootProject.projectDir.eachDirRecurse {
-    if (!isTaskDir(it) || it.path.contains(".idea")) {
+    if (!isTaskDir(it) || it.path.contains('.idea')) {
         return
     }
+
     def taskRelativePath = rootDir.toPath().relativize(it.toPath())
     def parts = []
     for (name in taskRelativePath) {
         parts.add(sanitizeName(name.toString()))
     }
+
     def moduleName =  parts.join("-")
     include "$moduleName"
     project(":$moduleName").projectDir = it
@@ -21,3 +35,5 @@ rootProject.projectDir.eachDirRecurse {
 def isTaskDir(File dir) {
     return new File(dir, "src").exists()
 }
+
+include 'util'
