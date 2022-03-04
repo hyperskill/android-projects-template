@@ -2,6 +2,11 @@
 /.gradle
 /build
 
+# Uncash gradle wrapper
+/gradle/wrapper
+gradlew
+gradlew.bat
+
 # Ignore IntelliJ IDEA files
 /.idea
 *.iml
@@ -9,8 +14,6 @@
 # Ignore local files
 local.properties
 
-# Uncash gradle wrapper
-/gradle/wrapper
 
 # Ignore plugin files
 #*.yaml
