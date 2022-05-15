@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
 
-        applicationId "org.hyperskill.android.project.template"  //TODO change template on this line to yourprojectname, after that also change AndroidManifest.xml
+        applicationId "org.hyperskill.projectname"  //TODO change template on this line to yourprojectname, after that also change AndroidManifest.xml
         minSdkVersion hs.android.minSdkVersion
         targetSdkVersion hs.android.targetSdkVersion
         versionCode 1

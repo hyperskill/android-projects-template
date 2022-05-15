@@ -1,4 +1,4 @@
-package org.hyperskill.android.project.template
+package org.hyperskill.projectname
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
