@@ -3,6 +3,7 @@ package org.hyperskill.projectname.internals
 import android.app.Activity
 import android.content.Intent
 import android.view.View
+import org.junit.Assert
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertTrue
 import org.robolectric.Robolectric
@@ -11,6 +12,7 @@ import org.robolectric.android.controller.ActivityController
 import org.robolectric.shadow.api.Shadow
 import org.robolectric.shadows.ShadowActivity
 import org.robolectric.shadows.ShadowLooper
+import org.robolectric.shadows.ShadowToast
 import java.time.Duration
 
 abstract class AbstractUnitTest<T : Activity>(clazz: Class<T>) {
@@ -129,5 +131,14 @@ abstract class AbstractUnitTest<T : Activity>(clazz: Class<T>) {
     fun View.clickAndRun(millis: Long = 500){
         this.performClick()
         shadowLooper.idleFor(Duration.ofMillis(millis))
+    }
+
+    /**
+     * Asserts that the last message toasted is the expectedMessage.
+     * Assertion fails if no toast is shown with null actualLastMessage value.
+     */
+    fun assertLastToastMessageEquals(errorMessage: String, expectedMessage: String,) {
+        val actualLastMessage: String? = ShadowToast.getTextOfLatestToast()
+        Assert.assertEquals(errorMessage, expectedMessage, actualLastMessage)
     }
 }
