@@ -2,6 +2,7 @@ package org.hyperskill.projectname.internals
 
 import android.app.Activity
 import android.content.Intent
+import android.os.Bundle
 import android.view.View
 import org.junit.Assert
 import org.junit.Assert.assertNotNull
@@ -68,10 +69,10 @@ abstract class AbstractUnitTest<T : Activity>(clazz: Class<T>) {
      *
      * returns a value for convenience use, like in tests that involve navigation between Activities
      */
-    fun <ReturnValue> testActivity(arguments: Intent = Intent(), testCodeBlock: (Activity) -> ReturnValue): ReturnValue {
+    fun <ReturnValue> testActivity(arguments: Intent = Intent(), savedInstanceState: Bundle = Bundle(), testCodeBlock: (Activity) -> ReturnValue): ReturnValue {
         try {
             activity.intent =  arguments
-            activityController.setup()
+            activityController.setup(savedInstanceState)
         } catch (ex: Exception) {
             throw AssertionError("Exception, test failed on activity creation with $ex\n${ex.stackTraceToString()}")
         }
