@@ -18,7 +18,7 @@ abstract class AbstractUnitTest<T : Activity>(clazz: Class<T>) {
     /**
      * Setup and control activities and their lifecycle
      */
-    protected val activityController: ActivityController<T> by lazy {
+    val activityController: ActivityController<T> by lazy {
         Robolectric.buildActivity(clazz)
     }
 
@@ -27,7 +27,7 @@ abstract class AbstractUnitTest<T : Activity>(clazz: Class<T>) {
      *
      * It is the @RealObject of the shadowActivity
      */
-    protected val activity : Activity by lazy {
+    val activity : Activity by lazy {
         activityController.get()
     }
 
@@ -39,7 +39,7 @@ abstract class AbstractUnitTest<T : Activity>(clazz: Class<T>) {
      * If you don't know what shadows are you can have a better understanding on that reading this
      * on roboletric documentation: http://robolectric.org/extending/
      */
-    protected val shadowActivity: ShadowActivity by lazy {
+    val shadowActivity: ShadowActivity by lazy {
         Shadow.extract(activity)
     }
 
@@ -48,7 +48,7 @@ abstract class AbstractUnitTest<T : Activity>(clazz: Class<T>) {
      *
      * Usually used with .idleFor(someDurationValue) or .runToEndOfTasks()
      */
-    protected val shadowLooper: ShadowLooper by lazy {
+    val shadowLooper: ShadowLooper by lazy {
         shadowOf(activity.mainLooper)
     }
 
@@ -118,7 +118,7 @@ abstract class AbstractUnitTest<T : Activity>(clazz: Class<T>) {
      *
      * Internally it calls performClick() and shadowLooper.idleFor(millis)
      */
-    protected fun View.clickAndRun(millis: Long = 500){
+    fun View.clickAndRun(millis: Long = 500){
         this.performClick()
         shadowLooper.idleFor(Duration.ofMillis(millis))
     }
