@@ -38,6 +38,14 @@ abstract class AbstractUnitTest<T : Activity>(clazz: Class<T>) {
      *
      * If you don't know what shadows are you can have a better understanding on that reading this
      * on roboletric documentation: http://robolectric.org/extending/
+     *
+     * Understanding Shadows is fundamental for Roboletric, things are not what they appear to be on
+     * Roboletric because running a code on the jvm is not the same as running the code on a real/emulated device.
+     * Code that expects to eventually talk to the machine won't have the machine they expect to have to talk to.
+     * Shadow is how Roboletric makes things possible, they impersonate @RealObject and act when @RealObject is expected to act.
+     *
+     * Things in Roboletric are not what they appear to be.
+     * It is possible to not notice it for the most part, but it will be essential for some other parts
      */
     val shadowActivity: ShadowActivity by lazy {
         Shadow.extract(activity)
