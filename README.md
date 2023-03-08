@@ -1,6 +1,6 @@
 # project-android-template
 
-This project is a template for any hyperskill android project you want to create.
+This project is a template for xml based hyperskill android projects.
 
 ## Getting Started
 
@@ -14,16 +14,12 @@ This project is a template for any hyperskill android project you want to create
   - Git -> Manage Remotes -> add -> Url: <make-a-new-github-repository-and-link-it-here.git>
 
 - Rename folders and related variables
+  - Before renaming folders it is better to let gradle sync and let indexing finish so that renaming happens properly
   - Change Course tab to Project tab -> right click 'Project Name' folder  -> refactor -> rename
-
   - Also with right click methods rename test/java/org/hyperskill/projectname and main/.../projectname obs: all lowercase and without separators
-
   - On AndroidManifest.xml change _package_, make sure _activity name_ has already changed
-
   - On course-info.yaml change _title_ and make sure _content_ has already changed
-
   - On module build.gradle, which is the one under stage1 folder, change _applicationId_
-
   - On string.xml change _app_name_
 
 - Commit initial commit for project
