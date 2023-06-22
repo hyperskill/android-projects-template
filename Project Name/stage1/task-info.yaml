@@ -1,7 +1,7 @@
 type: edu
 files:
 - name: build.gradle
-  visible: false
+  visible: true
 - name: src/main/AndroidManifest.xml
   visible: true
 - name: src/main/res/layout/activity_main.xml
