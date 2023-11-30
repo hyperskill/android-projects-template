@@ -5,6 +5,7 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.recyclerview.widget.RecyclerView
 import org.junit.Assert.*
 import org.robolectric.Robolectric
 import org.robolectric.Shadows.shadowOf
@@ -16,6 +17,7 @@ import org.robolectric.shadows.ShadowLooper
 import org.robolectric.shadows.ShadowToast
 import java.time.Duration
 
+@Suppress("RedundantUnitReturnType")
 abstract class AbstractUnitTest<T : Activity>(clazz: Class<T>) {
 
     /**
@@ -175,5 +177,118 @@ abstract class AbstractUnitTest<T : Activity>(clazz: Class<T>) {
         )
 
         return latestAlertDialog!!
+    }
+
+    /**
+     *  Use this to make some action on the each item of the RecyclerView.
+     *
+     *  Asserts that the size matches the size of fakeResultList
+     *
+     *  Calls action with the itemViewSupplier so that it is possible to retrieve that itemView.
+     *
+     *  Take attention to refresh references to views coming from itemView since RecyclerView
+     *  can change the instance of View for a determinate list item after an update to the list.
+     */
+    fun <T> RecyclerView.doActionOnEachListItem(
+        fakeResultList: List<T>,
+        caseDescription: String = "",
+        action: (itemViewSupplier: () -> View, position: Int, item: T) -> Unit
+    ) : Unit {
+
+        assertNotNull("$caseDescription Your recycler view adapter should not be null", this.adapter)
+
+        val expectedSize = fakeResultList.size
+
+        val actualSize = this.adapter!!.itemCount
+        assertEquals("$caseDescription Incorrect number of list items", expectedSize, actualSize)
+
+        if(expectedSize == 0) {
+            return
+        } else if(expectedSize > 0) {
+
+            val maxItemWidth = (0 until expectedSize)
+                .asSequence()
+                .mapNotNull { this.findViewHolderForAdapterPosition(it)?.itemView?.width }
+                .maxOrNull()
+                ?: throw AssertionError("$caseDescription No item is being displayed on RecyclerView, is it big enough to display one item?")
+            val listWidth = maxItemWidth * (expectedSize + 1)
+
+            val maxItemHeight = (0 until actualSize)
+                .asSequence()
+                .mapNotNull { this.findViewHolderForAdapterPosition(it)?.itemView?.height }
+                .maxOrNull()
+                ?: throw AssertionError("$caseDescription No item is being displayed on RecyclerView, is it big enough to display one item?")
+            val listHeight = maxItemHeight * (actualSize + 1)
+
+            for((i, song) in fakeResultList.withIndex()) {
+
+                val itemViewSupplier = {
+                    this.layout(0,0, listHeight, listWidth)  // may increase clock time
+                    scrollToPosition(i)
+                    findViewHolderForAdapterPosition(i)?.itemView
+                        ?: throw AssertionError("$caseDescription Could not find list item with index $i")
+                }
+                action(itemViewSupplier, i, song)
+            }
+
+        } else {
+            throw IllegalStateException("size assertion was not effective")
+        }
+    }
+
+    /**
+     *  Use this to make some action on one item of the RecyclerView.
+     *
+     *  Asserts that the the size of the list is at least itemIndex + 1.
+     *
+     *  Calls action with the itemViewSupplier so that it is possible to retrieve that itemView.
+     *
+     *  Take attention to refresh references to views coming from itemView since RecyclerView
+     *  can change the instance of View for a determinate list item after an update to the list.
+     */
+    fun RecyclerView.doActionOnSingleListItem(
+        itemIndex: Int,
+        caseDescription: String = "",
+        action: (itemViewSupplier: () -> View) -> Unit
+    ) : Unit {
+
+        assertNotNull("$caseDescription Your recycler view adapter should not be null", this.adapter)
+
+        val expectedMinSize = itemIndex + 1
+
+        val actualSize = this.adapter!!.itemCount
+        assertTrue(
+            "$caseDescription RecyclerView was expected to contain item with index $itemIndex, but its size was $actualSize",
+            actualSize >= expectedMinSize
+        )
+
+        if (actualSize >= expectedMinSize) {
+            val maxItemWidth = (0 until actualSize)
+                .asSequence()
+                .mapNotNull { this.findViewHolderForAdapterPosition(it)?.itemView?.width }
+                .maxOrNull()
+                ?: throw AssertionError("$caseDescription No item is being displayed on RecyclerView, is it big enough to display one item?")
+            val listWidth = maxItemWidth * (actualSize + 1)
+
+            val maxItemHeight = (0 until actualSize)
+                .asSequence()
+                .mapNotNull { this.findViewHolderForAdapterPosition(it)?.itemView?.height }
+                .maxOrNull()
+                ?: throw AssertionError("$caseDescription No item is being displayed on RecyclerView, is it big enough to display one item?")
+            val listHeight = maxItemHeight * (actualSize + 1)
+
+            val itemViewSupplier = {
+                this.layout(0, 0, listWidth, listHeight)  // may increase clock time
+                this.scrollToPosition(itemIndex)
+                val itemView = (this.findViewHolderForAdapterPosition(itemIndex)?.itemView
+                    ?: throw AssertionError("$caseDescription Could not find list item with index $itemIndex"))
+                itemView
+            }
+
+            action(itemViewSupplier)
+
+        } else {
+            throw IllegalStateException("size assertion was not effective")
+        }
     }
 }
