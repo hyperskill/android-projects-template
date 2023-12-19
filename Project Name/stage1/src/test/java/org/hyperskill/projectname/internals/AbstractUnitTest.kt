@@ -101,8 +101,8 @@ abstract class AbstractUnitTest<T : Activity>(clazz: Class<T>) {
             } else {
                 T::class.java.simpleName to maybeView?.javaClass?.simpleName
             }
-        val idNotFoundMessage = "View with id \"$id\" was not found"
-        val wrongClassMessage = "View with id \"$id\" is not from expected class. " +
+        val idNotFoundMessage = "View with id \"$idString\" was not found"
+        val wrongClassMessage = "View with id \"$idString\" is not from expected class. " +
                 "Expected $expectedClass found $maybeActualClass"
 
         assertNotNull(idNotFoundMessage, maybeView)
@@ -126,8 +126,8 @@ abstract class AbstractUnitTest<T : Activity>(clazz: Class<T>) {
             } else {
                 T::class.java.simpleName to maybeView?.javaClass?.simpleName
             }
-        val idNotFoundMessage = "View with id \"$id\" was not found"
-        val wrongClassMessage = "View with id \"$id\" is not from expected class. " +
+        val idNotFoundMessage = "View with id \"$idString\" was not found"
+        val wrongClassMessage = "View with id \"$idString\" is not from expected class. " +
                 "Expected $expectedClass found $maybeActualClass"
 
         assertNotNull(idNotFoundMessage, maybeView)
