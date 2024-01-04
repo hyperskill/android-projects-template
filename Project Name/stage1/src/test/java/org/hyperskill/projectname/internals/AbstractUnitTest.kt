@@ -97,7 +97,7 @@ abstract class AbstractUnitTest<T : Activity>(clazz: Class<T>) {
 
         val (expectedClass, maybeActualClass) =
             if(T::class.java.simpleName == maybeView?.javaClass?.simpleName) {
-                T::class.java.canonicalName to maybeView.javaClass.canonicalName
+                T::class.java.canonicalName to maybeView?.javaClass?.canonicalName
             } else {
                 T::class.java.simpleName to maybeView?.javaClass?.simpleName
             }
@@ -122,7 +122,7 @@ abstract class AbstractUnitTest<T : Activity>(clazz: Class<T>) {
 
         val (expectedClass, maybeActualClass) =
             if(T::class.java.simpleName == maybeView?.javaClass?.simpleName) {
-                T::class.java.canonicalName to maybeView.javaClass.canonicalName
+                T::class.java.canonicalName to maybeView?.javaClass?.canonicalName
             } else {
                 T::class.java.simpleName to maybeView?.javaClass?.simpleName
             }
