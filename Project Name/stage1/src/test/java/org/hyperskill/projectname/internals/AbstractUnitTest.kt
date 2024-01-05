@@ -66,15 +66,23 @@ abstract class AbstractUnitTest<T : Activity>(clazz: Class<T>) {
     }
 
     /**
-     * Decorate your test code with this method to ensure better error messages displayed
+     * Sets up activity for tests and ensures better error messages displayed
      * when tests are run with check button and exceptions are thrown by user implementation.
      *
      * returns a value for convenience use, like in tests that involve navigation between Activities
      */
-    fun <ReturnValue> testActivity(arguments: Intent = Intent(), savedInstanceState: Bundle = Bundle(), testCodeBlock: (Activity) -> ReturnValue): ReturnValue {
+    fun <ReturnValue> testActivity(
+        arguments: Intent = Intent(),
+        savedInstanceState: Bundle? = null,
+        testCodeBlock: (Activity) -> ReturnValue
+    ): ReturnValue {
         try {
-            activity.intent =  arguments
-            activityController.setup(savedInstanceState)
+            activity.intent = arguments
+            if (savedInstanceState == null) {
+                activityController.setup()
+            } else {
+                activityController.setup(savedInstanceState)
+            }
         } catch (ex: Exception) {
             throw AssertionError("Exception, test failed on activity creation with $ex\n${ex.stackTraceToString()}")
         }
